@@ -207,7 +207,7 @@ def main():
     x_pos_bg = 0
     y_pos_bg = 380
     points = 0
-    font = pygame.font.Font("E:\\Codes\\Amirali\\Chrome-Dino-Runner-master\\BNazanin.ttf", 20)
+    font = pygame.font.Font("BNazanin.ttf", 20)
     obstacles = []
     death_count = 0
     pause = False
@@ -246,7 +246,7 @@ def main():
     def paused():
         nonlocal pause
         pause = True
-        font = pygame.font.Font("E:\\Codes\\Amirali\\Chrome-Dino-Runner-master\\BNazanin.ttf", 30)
+        font = pygame.font.Font("BNazanin.ttf", 30)
         text = font.render("Game Paused, Press 'u' to Unpause", True, FONT_COLOR)
         textRect = text.get_rect()
         textRect.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT  // 3)
@@ -318,7 +318,7 @@ def menu(death_count):
         else:
             FONT_COLOR=(255,255,255)
             SCREEN.fill((128, 128, 128))
-        font = pygame.font.Font('E:\\Codes\\Amirali\\Chrome-Dino-Runner-master\\BNazanin.ttf', 30)
+        font = pygame.font.Font('BNazanin.ttf', 30)
         text_to_be_reshaped = 'شروع' 
 
         reshaped_text = arabic_reshaper.reshape(text_to_be_reshaped)
