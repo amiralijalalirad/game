@@ -6,8 +6,16 @@ import random
 import threading
 
 import pygame
+import arabic_reshaper
+from bidi.algorithm import get_display
 
 pygame.init()
+
+pygame.display.init()
+pygame.font.init()
+
+# Create a window
+win = pygame.display.set_mode((500, 500))
 
 # Global Constants
 
@@ -199,7 +207,7 @@ def main():
     x_pos_bg = 0
     y_pos_bg = 380
     points = 0
-    font = pygame.font.Font("freesansbold.ttf", 20)
+    font = pygame.font.Font("E:\\Codes\\Amirali\\Chrome-Dino-Runner-master\\BNazanin.ttf", 20)
     obstacles = []
     death_count = 0
     pause = False
@@ -215,7 +223,7 @@ def main():
             highscore = max(score_ints)
             if points > highscore:
                 highscore=points 
-            text = font.render("High Score: "+ str(highscore) + "  Points: " + str(points), True, FONT_COLOR)
+            text = font.render("بالاترين امتياز: "+ str(highscore) + "  Points: " + str(points), True, FONT_COLOR)
         textRect = text.get_rect()
         textRect.center = (900, 40)
         SCREEN.blit(text, textRect)
@@ -238,7 +246,7 @@ def main():
     def paused():
         nonlocal pause
         pause = True
-        font = pygame.font.Font("freesansbold.ttf", 30)
+        font = pygame.font.Font("E:\\Codes\\Amirali\\Chrome-Dino-Runner-master\\BNazanin.ttf", 30)
         text = font.render("Game Paused, Press 'u' to Unpause", True, FONT_COLOR)
         textRect = text.get_rect()
         textRect.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT  // 3)
@@ -310,13 +318,17 @@ def menu(death_count):
         else:
             FONT_COLOR=(255,255,255)
             SCREEN.fill((128, 128, 128))
-        font = pygame.font.Font("freesansbold.ttf", 30)
+        font = pygame.font.Font('E:\\Codes\\Amirali\\Chrome-Dino-Runner-master\\BNazanin.ttf', 30)
+        text_to_be_reshaped = 'شروع' 
+
+        reshaped_text = arabic_reshaper.reshape(text_to_be_reshaped)
+        bidi_text = get_display(reshaped_text)
 
         if death_count == 0:
-            text = font.render("Beginning", True, FONT_COLOR)
+            text = font.render(bidi_text, True, FONT_COLOR)
         elif death_count > 0:
             text = font.render("Press any Key to Restart", True, FONT_COLOR)
-            score = font.render("Your Score: " + str(points), True, FONT_COLOR)
+            score = font.render("امتيازت: " + str(points), True, FONT_COLOR)
             scoreRect = score.get_rect()
             scoreRect.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 50)
             SCREEN.blit(score, scoreRect)
