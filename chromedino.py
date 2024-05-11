@@ -15,7 +15,7 @@ SCREEN_HEIGHT = 600
 SCREEN_WIDTH = 1100
 SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
-pygame.display.set_caption("Chrome Dino Runner")
+pygame.display.set_caption("بازي داينو")
 
 Ico = pygame.image.load("assets/DinoWallpaper.png")
 pygame.display.set_icon(Ico)
@@ -313,7 +313,7 @@ def menu(death_count):
         font = pygame.font.Font("freesansbold.ttf", 30)
 
         if death_count == 0:
-            text = font.render("Press any Key to Start", True, FONT_COLOR)
+            text = font.render("Beginning", True, FONT_COLOR)
         elif death_count > 0:
             text = font.render("Press any Key to Restart", True, FONT_COLOR)
             score = font.render("Your Score: " + str(points), True, FONT_COLOR)
@@ -330,7 +330,7 @@ def menu(death_count):
                 score_ints = [int(x) for x in score.split()]  # Convert strings to ints
             highscore = max(score_ints)  # sum all elements of the list
             hs_score_text = font.render(
-                "High Score : " + str(highscore), True, FONT_COLOR
+               " Record: " + str(highscore), True, FONT_COLOR
             )
             hs_score_rect = hs_score_text.get_rect()
             hs_score_rect.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 100)
